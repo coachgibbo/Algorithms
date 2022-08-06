@@ -15,7 +15,7 @@ class BinaryHeap:
             self.fall(i)
 
     # We append the new value as the last node in the heap
-    # We then 'rise' the node, comparing it with it's parent until it's in position
+    # We then 'rise' the node, comparing it with its parent until it's in position
     def insert(self, value) -> None:
         self.array.append(value)
         self.length += 1
