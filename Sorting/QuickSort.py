@@ -1,3 +1,15 @@
+def quick_sort_naive(array):
+    n = len(array)
+
+    if n > 1:
+        partitioned, pivot = naive_partition(array, 1)
+        left = quick_sort_naive(partitioned[0:pivot])
+        right = quick_sort_naive(partitioned[pivot+1:n])
+        return left + [partitioned[pivot]] + right
+
+    return array
+
+
 def naive_partition(array, pivot_index):
     left = []
     pivots = []
@@ -13,8 +25,19 @@ def naive_partition(array, pivot_index):
             right.append(i)
 
     array = left + pivots + right
-    print(array)
-    return len(left) + len(pivots)//2
+    return array, len(left) + len(pivots)//2
+
+
+def quick_sort_hoares(array):
+    n = len(array)
+
+    if n > 1:
+        pivots = hoares_partition(array, 1)
+        left = quick_sort_hoares(array[0:pivots])
+        right = quick_sort_hoares(array[pivots+1:n])
+        return left + [array[pivots]] + right
+
+    return array
 
 
 def hoares_partition(array, pivot_index):
@@ -31,30 +54,43 @@ def hoares_partition(array, pivot_index):
             array[i], array[j] = array[j], array[i]
 
     array[0], array[j] = array[j], array[0]
-    print(array)
     return j
 
 
+def quick_sort_dnf(array):
+    n = len(array)
+
+    if n > 1:
+        pivots = dnf_partition(array, array[1])
+        left = quick_sort_dnf(array[0:pivots[0]])
+        right = quick_sort_dnf(array[pivots[1]:n])
+        return left + array[pivots[0]:pivots[1]] + right
+
+    return array
+
+
 # Dutch National Flag Partitioning
-def dnf_partition(array, pivot_index):
-    boundary1 = j = 0
+def dnf_partition(array, pivot):
+    boundary1 = 0
+    j = 0
     boundary2 = len(array) - 1
+
     while j <= boundary2:
-        if array[j] < array[pivot_index]:
+        if array[j] < pivot:
             array[j], array[boundary1] = array[boundary1], array[j]
             boundary1 += 1
             j += 1
-        elif array[j] == array[pivot_index]:
+        elif array[j] == pivot:
             j += 1
         else:
             array[j], array[boundary2] = array[boundary2], array[j]
             boundary2 -= 1
 
-    print(array)
     return boundary1, j-1
 
 
 if __name__ == "__main__":
-    print("Naive Partition Result: " + str(naive_partition([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9], 5)))
-    print("Hoare's Partition Result: " + str(hoares_partition([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9], 5)))
-    print("Dutch National Flag Partition Result: " + str(dnf_partition([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9, 41, 41], 5)))
+    print("Test Input: [50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41]")
+    print("Quick Sort (Naive): " + str(quick_sort_naive([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41])))
+    print("Quick Sort (Hoare's): " + str(quick_sort_hoares([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41])))
+    print("Quick Sort (DNF): " + str(quick_sort_dnf([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41])))
