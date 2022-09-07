@@ -1,3 +1,6 @@
+import TestData
+
+
 def insertion_sort(array):
 	n = len(array)
 
@@ -8,9 +11,12 @@ def insertion_sort(array):
 			array[j+1] = array[j]
 			j -= 1
 		array[j+1] = curr
-	
+
 	return array
 
 
 if __name__ == '__main__':
-	print(insertion_sort([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9]))
+	test_input = TestData.generate_list_of_ints(1, 50000, 500)
+	print("Test Input: " + str(test_input))
+	print("Insertion Sort: " + str(insertion_sort(test_input)))
+

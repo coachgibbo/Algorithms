@@ -1,3 +1,6 @@
+import TestData
+
+
 def quick_sort_naive(array):
     n = len(array)
 
@@ -90,7 +93,8 @@ def dnf_partition(array, pivot):
 
 
 if __name__ == "__main__":
-    print("Test Input: [50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41]")
-    print("Quick Sort (Naive): " + str(quick_sort_naive([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41])))
-    print("Quick Sort (Hoare's): " + str(quick_sort_hoares([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41])))
-    print("Quick Sort (DNF): " + str(quick_sort_dnf([50,31,21,28,72,41,73,93,68,43,45,78,5,17,97,71,69,61,88,75,99,44,55,9,41,41])))
+    test_input = TestData.generate_list_of_ints(1, 50000, 500)
+    print("Test Input: " + str(test_input))
+    print("Quick Sort (Naive): " + str(quick_sort_naive(test_input)))
+    print("Quick Sort (Hoare's): " + str(quick_sort_hoares(test_input)))
+    print("Quick Sort (DNF): " + str(quick_sort_dnf(test_input)))
