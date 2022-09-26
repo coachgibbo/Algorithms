@@ -1,3 +1,6 @@
+import TestData
+
+
 def binary_search(array, target):
     lo = 0
     hi = len(array) - 1
@@ -16,4 +19,6 @@ def binary_search(array, target):
 
 
 if __name__ == '__main__':
-    print(binary_search([5, 9, 17, 21, 28, 31, 41, 43, 44, 45, 50, 55, 61, 68, 69, 71, 72, 73, 75, 78, 88, 93, 97, 99], 99))
+    test_input = TestData.generate_sorted_list_of_ints_with_target(1, 200, 20, 49)
+    print("Test Input: " + str(test_input))
+    print("Binary Search - 49 is at index " + str(binary_search(test_input, 49)))
