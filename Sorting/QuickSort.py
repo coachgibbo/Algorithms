@@ -35,10 +35,10 @@ def quick_sort_hoares(array):
     n = len(array)
 
     if n > 1:
-        pivots = hoares_partition(array, 1)
-        left = quick_sort_hoares(array[0:pivots])
-        right = quick_sort_hoares(array[pivots+1:n])
-        return left + [array[pivots]] + right
+        pivot = hoares_partition(array, 1)[1]
+        left = quick_sort_hoares(array[0:pivot])
+        right = quick_sort_hoares(array[pivot+1:n])
+        return left + [array[pivot]] + right
 
     return array
 
@@ -57,7 +57,7 @@ def hoares_partition(array, pivot_index):
             array[i], array[j] = array[j], array[i]
 
     array[0], array[j] = array[j], array[0]
-    return j
+    return array, j
 
 
 def quick_sort_dnf(array):
