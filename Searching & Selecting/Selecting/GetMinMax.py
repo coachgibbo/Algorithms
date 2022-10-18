@@ -1,7 +1,7 @@
 import TestData
 
 
-def getMin(array):
+def get_min(array):
     minimum = array[0]
     for integer in array:
         if integer < minimum:
@@ -9,7 +9,7 @@ def getMin(array):
     return minimum
 
 
-def getMax(array):
+def get_max(array):
     maximum = array[0]
     for integer in array:
         if integer > maximum:
@@ -17,7 +17,7 @@ def getMax(array):
     return maximum
 
 
-def getOptimizedMinMax(array):
+def get_minmax_optimized(array):
     n = len(array)
     if n % 2 != 0:
         minimum, maximum, start_index = array[1], array[1], 1
@@ -45,7 +45,7 @@ def getOptimizedMinMax(array):
 if __name__ == "__main__":
     test_input = TestData.generate_list_of_ints(1, 200, 20)
     print("Test Input: " + str(test_input))
-    print("Min: " + str(getMin(test_input)))
-    print("Max: " + str(getMax(test_input)))
-    optMinMax = getOptimizedMinMax(test_input)
+    print("Min: " + str(get_min(test_input)))
+    print("Max: " + str(get_max(test_input)))
+    optMinMax = get_minmax_optimized(test_input)
     print(str.format("Optimized Min: {} and Optimized Max: {}", optMinMax[0], optMinMax[1]))
